@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-import sys
-import os
-sys.path.append("/usr/local/lib/python3.5/dist-packages/")
-
-#disable warning
-import logging
-logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
-
 # Sensor stuff
 import Adafruit_DHT
 
@@ -53,7 +44,6 @@ def getTemperatureAndUpdateStuff():
 		#Send MQTT publish
 		publishTemperature = mqttClient.publish(mqttTopic + "/temperature", round(temperature, 2))
 		publishTemperature.wait_for_publish()
-		print(publishTemperature.is_published())
 		
 		publishHumidity =  mqttClient.publish(mqttTopic + "/humidity", round(humidity, 2))
 		publishHumidity.wait_for_publish()
